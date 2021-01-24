@@ -1,1 +1,1 @@
-sfasub adw web: sh target/bin/skeletonwebapp
+web: sh target/bin/skeletonwebapp
