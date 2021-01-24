@@ -37,12 +37,3 @@ jobs:
       # Build and test
       - name: Maven build and test
         run: mvn --batch-mode verify
-
-      - name: Build and push
-        env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        run: heroku container:push -a sei-cw web
-      - name: Release
-        env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        run: heroku container:release -a sei-cw web
