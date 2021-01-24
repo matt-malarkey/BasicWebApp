@@ -12,11 +12,6 @@ public class QueryProcessorTest {
     QueryProcessor queryProcessor = new QueryProcessor();
 
     @Test
-    public void failingTest() throws Exception {
-        assertTrue(false);
-    }
-
-    @Test
     public void returnsEmptyStringIfCannotProcessQuery() throws Exception {
         assertThat(queryProcessor.process("test"), is(""));
     }
