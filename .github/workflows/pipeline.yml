@@ -4,9 +4,7 @@ on: [ push ]
 
 jobs:
   deploy:
-    name: Build, test and deploy
-
-    environment: heroku_production
+    name: Build and test
 
     runs-on: ubuntu-latest
 
