@@ -6,11 +6,19 @@ jobs:
   deploy:
     name: Build, test and deploy
 
+    environment: heroku_production
+
     runs-on: ubuntu-latest
 
     steps:
       # Checkout latest version of the repo
       - uses: actions/checkout@v2
+
+      # Check auth with API key works
+      - name: Login to Heroku Container registry
+      env:
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      run: heroku container:login
 
       # Install Java
       - name: Set up JDK 15
