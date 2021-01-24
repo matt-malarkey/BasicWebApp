@@ -12,8 +12,8 @@ public class QueryProcessorTest {
     QueryProcessor queryProcessor = new QueryProcessor();
 
     @Test
-    public void returnsEmptyStringIfCannotProcessQuery() throws Exception {
-        assertThat(queryProcessor.process("test"), is(""));
+    public void returnsLowerCaseQueryByDefault() throws Exception {
+        assertThat(queryProcessor.process("Test"), is("test"));
     }
 
     @Test
