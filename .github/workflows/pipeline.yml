@@ -1,17 +1,31 @@
 name: Pipeline
 
-on: [push]
+on: [ push ]
 
 jobs:
-  build:
+  deploy:
+    name: Build, test and deploy
+
     runs-on: ubuntu-latest
 
     steps:
+      # Checkout latest version of the repo
       - uses: actions/checkout@v2
+
+      # Install Java
       - name: Set up openJDK 15
         uses: actions/setup-java@v1
         with:
           java-version: 15
-      - name: Build with Maven
-        # TODO: not sure if we need the clean below
-        run: mvn --batch-mode clean verify
+
+      # See https://docs.github.com/en/actions/guides/building-and-testing-java-with-maven
+      - name: Cache Maven packages
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+
+      # Build and test
+      - name: Maven verify (build and test)
+        run: mvn --batch-mode verify
