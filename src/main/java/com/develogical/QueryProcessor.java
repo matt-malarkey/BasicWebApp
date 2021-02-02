@@ -93,24 +93,17 @@ public class QueryProcessor {
         return sb.toString();
     }
 
-    public static boolean isPrime(int number) {
-        if (q.contains("theresa")) {
-            return "2016";
+    // write string with words separated by space
+    public boolean containsAllWords(String query, String allWords) {
+        for (String word : allWords.split(" ")) {
+            if (!query.contains(word)) {
+                return false;
+            }
         }
-
-        return q;
+        return true;
     }
 
-    // write string with words separated by space
-    public boolean containsAllWords(String query, String allWords){
-            for (String word : allWords.split(" ")) {
-                if (!query.contains(word)) {
-                    return false;
-                }
-            }
-            return true;
-        }
-    public boolean isPrime(int number) {
+    public static boolean isPrime(int number) {
         return number > 1
                 && IntStream.rangeClosed(2, (int) Math.sqrt(number))
                 .noneMatch(n -> (number % n == 0));
