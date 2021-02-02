@@ -45,4 +45,11 @@ public class QueryProcessorTest {
     public void multiply() {
         assertThat(queryProcessor.process("80f91450: what is 8 multiplied by 3"), containsString("24"));
     }
+
+    @Test
+    public void cubeSquare() {
+        assertThat(queryProcessor.process("448r23e239: both cube and square 15625, 594, 842, 400"), containsString("15625"));
+        assertThat(queryProcessor.process("1139b740: which of the following numbers is both a square and a cube: 13, 81"), containsString("81"));
+    }
+
 }

@@ -49,10 +49,45 @@ public class QueryProcessor {
             return Integer.toString(ints.stream().reduce(0, Integer::sum));
         }
 
-        if (query.contains("multiplied")) {
+        if (q.contains("cube") && q.contains("square")) {
+            for (int i : ints) {
+                if (perfectSquare(i) && perfectCube(i)) {
+                    return Integer.toString(i);
+                }
+            }
+        }
+
+        if (q.contains("multiplied")) {
             return Integer.toString(ints.stream().reduce(1, (a, b) -> a * b));
         }
 
         return q;
     }
+
+    public boolean perfectSquare(int N) {
+        double sqrt = Math.sqrt(N);
+        return ((sqrt - Math.floor(sqrt)) == 0);
+    }
+
+    public boolean perfectCube(int N) {
+        int cube;
+
+        // Iterate from 1-N
+        for (int i = 0; i <= N; i++) {
+
+            // Find the cube of
+            // every number
+            cube = i * i * i;
+
+            // Check if cube equals
+            // N or not
+            if (cube == N) {
+                return true;
+            } else if (cube > N) {
+                return false;
+            }
+        }
+        return false;
+    }
+
 }
