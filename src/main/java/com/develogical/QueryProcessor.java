@@ -1,5 +1,8 @@
 package com.develogical;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -19,6 +22,14 @@ public class QueryProcessor {
             q = sb.toString();
         }
 
+        // Extract any ints
+        final List<Integer> ints = new ArrayList<>();
+        Pattern p = Pattern.compile("\\d+");
+        Matcher m = p.matcher(q);
+        while (m.find()) {
+            int i = Integer.parseInt(m.group());
+            ints.add(i);
+        }
 
         if (q.contains("shakespeare")) {
             return "William Shakespeare (26 April 1564 - 23 April 1616) was an " +
@@ -31,38 +42,15 @@ public class QueryProcessor {
         }
 
         if (q.contains("is the largest")) {
-            Pattern p = Pattern.compile("\\d+");
-            Matcher m = p.matcher(q);
-            int largest = 0;
-            while (m.find()) {
-                int i = Integer.parseInt(m.group());
-                if (i > largest) {
-                    largest = i;
-                }
-            }
-            return Integer.toString(largest);
+            return Integer.toString(Collections.max(ints));
         }
 
         if (query.contains("plus")) {
-            Pattern p = Pattern.compile("\\d+");
-            Matcher m = p.matcher(q);
-            int sum = 0;
-            while (m.find()) {
-                int i = Integer.parseInt(m.group());
-                sum += i;
-            }
-            return Integer.toString(sum);
+            return Integer.toString(ints.stream().reduce(0, Integer::sum));
         }
 
         if (query.contains("multiplied")) {
-            Pattern p = Pattern.compile("\\d+");
-            Matcher m = p.matcher(q);
-            int product = 1;
-            while (m.find()) {
-                int i = Integer.parseInt(m.group());
-                product *= i;
-            }
-            return Integer.toString(product);
+            return Integer.toString(ints.stream().reduce(1, (a, b) -> a * b));
         }
 
         return q;
