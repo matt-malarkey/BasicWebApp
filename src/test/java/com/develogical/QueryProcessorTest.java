@@ -56,4 +56,14 @@ public class QueryProcessorTest {
         assertThat(queryProcessor.process("448r23e239: both cube and square 13, 81"), containsString("81"));
     }
 
+    @Test
+    public void eiffeltower() {
+        assertThat(queryProcessor.process("448r23e239: which city is the Eiffel tower in"), containsString("paris"));
+    }
+
+    @Test
+    public void jamesbonddrno() {
+        assertThat(queryProcessor.process("448r23e239: who played james bond in film dr no"), containsString("sean connery"));
+    }
+
 }

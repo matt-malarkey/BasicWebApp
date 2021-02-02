@@ -61,7 +61,25 @@ public class QueryProcessor {
             return Integer.toString(ints.stream().reduce(1, (a, b) -> a * b));
         }
 
+        if (containsAllWords(q, "city eiffel tower")) {
+            return "paris";
+        }
+
+        if (containsAllWords(q, "james bond dr film no")) {
+            return "sean connery";
+        }
+
         return q;
+    }
+
+    // write string with words separated by space
+    public boolean containsAllWords(String query, String allWords) {
+        for (String word: allWords.split(" ")) {
+            if (!query.contains(word)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public boolean perfectSquare(int N) {
