@@ -5,7 +5,6 @@ import org.junit.Test;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
 
 public class QueryProcessorTest {
 
@@ -34,7 +33,6 @@ public class QueryProcessorTest {
 
     @Test
     public void plus() {
-        // api?q=5076e740:%20what%20is%2010%20plus%2014
         assertThat(queryProcessor.process("448r23e239: what is 10 plus 14"), containsString("24"));
     }
 
