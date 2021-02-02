@@ -76,6 +76,7 @@ public class QueryProcessorTest {
     public void primes() {
         assertThat(queryProcessor.process("62049600: which of the following numbers are primes: 163, 383, 447, 67"), containsString("163, 383, 67"));
         assertThat(queryProcessor.process("69da82c0: which of the following numbers are primes: 457, 109"), containsString("457, 109"));
+        assertThat(queryProcessor.process("345dbbc0: which of the following numbers are primes: 11, 227"), containsString("11"));
     }
 
     @Test
