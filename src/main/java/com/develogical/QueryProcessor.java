@@ -69,6 +69,11 @@ public class QueryProcessor {
         if (containsAllWords(q, "james bond dr film no")) {
             return "sean connery";
         }
+
+        if (containsAllWords(q, "colour banana")) {
+            return "yellow";
+        }
+
         if (q.contains("prime")) {
             StringBuilder sb = new StringBuilder();
             for (int i : ints) {
