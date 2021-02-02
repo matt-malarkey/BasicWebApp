@@ -51,6 +51,7 @@ public class QueryProcessor {
             return Integer.toString(ints.stream().reduce(0, Integer::sum));
         }
 
+
         if (q.contains("cube") && q.contains("square")) {
             return listWhere(ints, (i) -> perfectSquare(i) && perfectCube(i));
         }
@@ -81,6 +82,14 @@ public class QueryProcessor {
 
         if (q.contains("fibonacci")) {
             return Integer.toString(nthFibonacci(ints.get(0)));
+        }
+
+        if (q.contains("minus")) {
+            return Integer.toString(ints.get(0) - ints.get(1));
+        }
+
+        if (q.contains("power")) {
+            return String.valueOf(Math.pow((double)ints.get(0),(double)ints.get(1)));
         }
 
         return q;

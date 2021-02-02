@@ -81,4 +81,15 @@ public class QueryProcessorTest {
         assertThat(queryProcessor.process("62049600: what is the 12th number in the fibonacci sequence"), containsString("144"));
     }
 
+    @Test
+    public void minus() {
+        assertThat(queryProcessor.process("62049600: what is the 5 minus 3"), containsString("2"));
+    }
+
+    @Test
+    public void power() {
+        assertThat(queryProcessor.process("62049600: what is the 5 to the power of 3"), containsString("125"));
+    }
+
+
 }
