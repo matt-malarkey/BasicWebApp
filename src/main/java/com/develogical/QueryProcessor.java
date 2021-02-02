@@ -42,7 +42,7 @@ public class QueryProcessor {
             return Integer.toString(largest);
         }
 
-        if (query.contains("plus")) {
+        if (q.contains("plus")) {
             Pattern p = Pattern.compile("\\d+");
             Matcher m = p.matcher(q);
             int sum = 0;
@@ -53,6 +53,44 @@ public class QueryProcessor {
             return Integer.toString(sum);
         }
 
+        if (q.contains("cube") && q.contains("square")) {
+            Pattern p = Pattern.compile("\\d+");
+            Matcher m = p.matcher(q);
+            while (m.find()) {
+                int i = Integer.parseInt(m.group());
+                if (perfectSquare(i) && perfectCube(i)) {
+                    return Integer.toString(i);
+                }
+            }
+        }
+
         return q;
+    }
+
+    public boolean perfectSquare(int N) {
+        double sqrt = Math.sqrt(N);
+        return ((sqrt - Math.floor(sqrt)) == 0);
+    }
+
+    public boolean perfectCube(int N) {
+        int cube;
+
+        // Iterate from 1-N
+        for (int i = 0; i <= N; i++) {
+
+            // Find the cube of
+            // every number
+            cube = i * i * i;
+
+            // Check if cube equals
+            // N or not
+            if (cube == N) {
+                return true;
+            }
+            else if (cube > N) {
+                return false;
+            }
+        }
+        return false;
     }
 }
