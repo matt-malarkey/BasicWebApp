@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.IntStream;
 
 public class QueryProcessor {
 
@@ -61,7 +62,24 @@ public class QueryProcessor {
             return Integer.toString(ints.stream().reduce(1, (a, b) -> a * b));
         }
 
+        if (q.contains("prime")) {
+            StringBuilder sb = new StringBuilder();
+            for (int i : ints) {
+                if (isPrime(i)) {
+                    sb.append(i);
+                    sb.append(',');
+                }
+            }
+            return sb.toString();
+        }
+
         return q;
+    }
+
+    public boolean isPrime(int number) {
+        return number > 1
+                && IntStream.rangeClosed(2, (int) Math.sqrt(number))
+                .noneMatch(n -> (number % n == 0));
     }
 
     public boolean perfectSquare(int N) {
