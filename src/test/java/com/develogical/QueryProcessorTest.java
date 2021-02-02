@@ -59,7 +59,7 @@ public class QueryProcessorTest {
 
     @Test
     public void cubeSquare3() {
-        assertThat(queryProcessor.process("36c137b0: which of the following numbers is both a square and a cube: 728, 11, 256, 102"), containsString(""));
+        assertThat(queryProcessor.process("19eb86e0: which of the following numbers is both a square and a cube: 578, 531441"), containsString("531441"));
     }
 
     @Test
@@ -71,9 +71,12 @@ public class QueryProcessorTest {
     public void jamesbonddrno() {
         assertThat(queryProcessor.process("448r23e239: who played james bond in film dr no"), containsString("sean connery"));
     }
+
     @Test
     public void primes() {
-        assertThat(queryProcessor.process("62049600: which of the following numbers are primes: 163, 383, 447, 67"), containsString("163,383,67"));
+        assertThat(queryProcessor.process("62049600: which of the following numbers are primes: 163, 383, 447, 67"), containsString("163, 383, 67"));
+        assertThat(queryProcessor.process("69da82c0: which of the following numbers are primes: 457, 109"), containsString("457, 109"));
+        assertThat(queryProcessor.process("345dbbc0: which of the following numbers are primes: 11, 227"), containsString("11"));
     }
 
     @Test

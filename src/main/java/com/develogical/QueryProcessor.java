@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class QueryProcessor {
@@ -96,14 +97,8 @@ public class QueryProcessor {
     }
 
     public String listWhere(List<Integer> ints, Function<Integer, Boolean> condition) {
-        StringBuilder sb = new StringBuilder();
-        for (int i : ints) {
-            if (condition.apply(i)) {
-                sb.append(i);
-                sb.append(',');
-            }
-        }
-        return sb.toString();
+        List<String> strs = ints.stream().filter(condition::apply).map(Object::toString).collect(Collectors.toList());
+        return String.join(", ", strs);
     }
 
     // write string with words separated by space
