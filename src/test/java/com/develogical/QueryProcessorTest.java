@@ -30,4 +30,9 @@ public class QueryProcessorTest {
     public void largestInt() {
         assertThat(queryProcessor.process("which of the following numbers is the largest: 47, 5, 9, 657"), containsString("657"));
     }
+
+    @Test
+    public void addNumbers() {
+        assertThat(queryProcessor.process("what is 15 plus 35"), containsString("50"));
+    }
 }

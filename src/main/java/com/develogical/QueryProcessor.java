@@ -26,7 +26,7 @@ public class QueryProcessor {
                 }
             }
             return Integer.toString(largest);
-        } else if (query.contains("plus")) {
+        } else if (q.contains("plus")) {
             Pattern p = Pattern.compile("\\d+");
             Matcher m = p.matcher(q);
             int sum = 0;
