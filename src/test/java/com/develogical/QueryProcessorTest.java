@@ -26,6 +26,11 @@ public class QueryProcessorTest {
     }
 
     @Test
+    public void name() {
+        assertThat(queryProcessor.process("33e3e: name"), containsString("horse"));
+    }
+
+    @Test
     public void largestInt() {
         assertThat(queryProcessor.process("67fcfb30: which of the following numbers is the largest: 47, 5, 9, 657"), containsString("657"));
         assertThat(queryProcessor.process("9999: which of the following numbers is the largest: 641, 18"), containsString("641"));
@@ -37,8 +42,8 @@ public class QueryProcessorTest {
     }
 
     @Test
-    public void addNumbers() {
-        assertThat(queryProcessor.process("what is 15 plus 35"), containsString("50"));
+    public void multiply() {
+        assertThat(queryProcessor.process("80f91450: what is 8 multiplied by 3"), containsString("24"));
     }
 
     @Test
