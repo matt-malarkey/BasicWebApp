@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.IntStream;
 
 public class QueryProcessor {
 
@@ -68,18 +69,37 @@ public class QueryProcessor {
         if (containsAllWords(q, "james bond dr film no")) {
             return "sean connery";
         }
+        if (q.contains("prime")) {
+            StringBuilder sb = new StringBuilder();
+            for (int i : ints) {
+                if (isPrime(i)) {
+                    sb.append(i);
+                    sb.append(',');
+                }
+            }
+            return sb.toString();
+        }
+
+        if (q.contains("theresa")) {
+            return "2016";
+        }
 
         return q;
     }
 
     // write string with words separated by space
-    public boolean containsAllWords(String query, String allWords) {
-        for (String word: allWords.split(" ")) {
-            if (!query.contains(word)) {
-                return false;
+    public boolean containsAllWords(String query, String allWords){
+            for (String word : allWords.split(" ")) {
+                if (!query.contains(word)) {
+                    return false;
+                }
             }
+            return true;
         }
-        return true;
+    public boolean isPrime(int number) {
+        return number > 1
+                && IntStream.rangeClosed(2, (int) Math.sqrt(number))
+                .noneMatch(n -> (number % n == 0));
     }
 
     public boolean perfectSquare(int N) {
