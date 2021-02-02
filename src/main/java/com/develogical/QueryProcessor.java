@@ -83,14 +83,7 @@ public class QueryProcessor {
     }
 
     public String listWhere(List<Integer> ints, Function<Integer, Boolean> condition) {
-        StringBuilder sb = new StringBuilder();
-        for (int i : ints) {
-            if (condition.apply(i)) {
-                sb.append(i);
-                sb.append(',');
-            }
-        }
-        return sb.toString();
+        return ints.stream().filter(condition::apply).map(Object::toString).reduce("", (a, b) -> a + b + ", ");
     }
 
     // write string with words separated by space
