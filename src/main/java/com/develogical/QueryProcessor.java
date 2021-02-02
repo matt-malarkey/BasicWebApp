@@ -79,6 +79,10 @@ public class QueryProcessor {
             return "2016";
         }
 
+        if (q.contains("fibonacci")) {
+            return Integer.toString(nthFibonacci(ints.get(0)));
+        }
+
         return q;
     }
 
@@ -135,4 +139,26 @@ public class QueryProcessor {
         return false;
     }
 
+
+    public int nthFibonacci(int n) {
+
+        /* Declare an array to store Fibonacci numbers. */
+        int f[] = new int[n + 1];
+        int i;
+
+        /* 0th and 1st number of the series are 0 and 1*/
+        f[0] = 0;
+
+        if (n > 0) {
+            f[1] = 1;
+
+            for (i = 2; i <= n; i++) {
+                /* Add the previous 2 numbers in the series
+             and store it */
+                f[i] = f[i - 1] + f[i - 2];
+            }
+        }
+
+        return f[n];
+    }
 }
