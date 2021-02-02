@@ -73,6 +73,10 @@ public class QueryProcessor {
             return sb.toString();
         }
 
+        if (q.contains("theresa")) {
+            return "2016";
+        }
+
         return q;
     }
 
