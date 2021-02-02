@@ -50,4 +50,8 @@ public class QueryProcessorTest {
     public void cubeSquare() {
         assertThat(queryProcessor.process("448r23e239: both cube and square 15625, 594, 842, 400"), containsString("15625"));
     }
+    @Test
+    public void cubeSquare2() {
+        assertThat(queryProcessor.process("448r23e239: both cube and square 13, 81"), containsString("81"));
+    }
 }
