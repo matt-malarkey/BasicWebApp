@@ -3,6 +3,7 @@ package com.develogical;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.IntStream;
@@ -51,11 +52,7 @@ public class QueryProcessor {
         }
 
         if (q.contains("cube") && q.contains("square")) {
-            for (int i : ints) {
-                if (perfectSquare(i) && perfectCube(i)) {
-                    return Integer.toString(i);
-                }
-            }
+            return listWhere(ints, (i) -> perfectSquare(i) && perfectCube(i));
         }
 
         if (q.contains("multiplied")) {
@@ -63,14 +60,7 @@ public class QueryProcessor {
         }
 
         if (q.contains("prime")) {
-            StringBuilder sb = new StringBuilder();
-            for (int i : ints) {
-                if (isPrime(i)) {
-                    sb.append(i);
-                    sb.append(',');
-                }
-            }
-            return sb.toString();
+            return listWhere(ints, QueryProcessor::isPrime);
         }
 
         if (q.contains("theresa")) {
@@ -80,7 +70,18 @@ public class QueryProcessor {
         return q;
     }
 
-    public boolean isPrime(int number) {
+    public String listWhere(List<Integer> ints, Function<Integer, Boolean> condition) {
+        StringBuilder sb = new StringBuilder();
+        for (int i : ints) {
+            if (condition.apply(i)) {
+                sb.append(i);
+                sb.append(',');
+            }
+        }
+        return sb.toString();
+    }
+
+    public static boolean isPrime(int number) {
         return number > 1
                 && IntStream.rangeClosed(2, (int) Math.sqrt(number))
                 .noneMatch(n -> (number % n == 0));
