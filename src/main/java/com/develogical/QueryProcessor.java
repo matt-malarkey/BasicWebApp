@@ -10,14 +10,15 @@ public class QueryProcessor {
         String q = query.toLowerCase();
 
         // Get rid of query ID
-        StringBuilder sb = new StringBuilder();
         if (q.contains(":")) {
+            StringBuilder sb = new StringBuilder();
             String[] qs = q.split(":");
             for (int i = 1; i < qs.length; i++) {
                 sb.append(qs[i]);
             }
+            q = sb.toString();
         }
-        q = sb.toString();
+
 
         if (q.contains("shakespeare")) {
             return "William Shakespeare (26 April 1564 - 23 April 1616) was an " +
@@ -51,6 +52,17 @@ public class QueryProcessor {
                 sum += i;
             }
             return Integer.toString(sum);
+        }
+
+        if (query.contains("multiplied")) {
+            Pattern p = Pattern.compile("\\d+");
+            Matcher m = p.matcher(q);
+            int product = 1;
+            while (m.find()) {
+                int i = Integer.parseInt(m.group());
+                product *= i;
+            }
+            return Integer.toString(product);
         }
 
         return q;
