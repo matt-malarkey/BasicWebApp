@@ -78,4 +78,9 @@ public class QueryProcessorTest {
         assertThat(queryProcessor.process("69da82c0: which of the following numbers are primes: 457, 109"), containsString("457, 109"));
     }
 
+    @Test
+    public void fib() {
+        assertThat(queryProcessor.process("62049600: what is the 12th number in the fibonacci sequence"), containsString("144"));
+    }
+
 }
