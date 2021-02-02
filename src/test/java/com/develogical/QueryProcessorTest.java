@@ -37,4 +37,9 @@ public class QueryProcessorTest {
         // api?q=5076e740:%20what%20is%2010%20plus%2014
         assertThat(queryProcessor.process("448r23e239: what is 10 plus 14"), containsString("24"));
     }
+
+    @Test
+    public void addNumbers() {
+        assertThat(queryProcessor.process("what is 15 plus 35"), containsString("50"));
+    }
 }
