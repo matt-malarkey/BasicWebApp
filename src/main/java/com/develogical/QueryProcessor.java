@@ -26,6 +26,12 @@ public class QueryProcessor {
             }
             return Integer.toString(largest);
         }
+        if (query.toLowerCase().contains("what is plus")) {
+            return "plus is opposite of minus";
+        }
         return query.toLowerCase();
+
+
+
     }
 }
