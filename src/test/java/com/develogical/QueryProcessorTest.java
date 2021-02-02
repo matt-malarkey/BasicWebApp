@@ -63,6 +63,15 @@ public class QueryProcessorTest {
     }
 
     @Test
+    public void eiffeltower() {
+        assertThat(queryProcessor.process("448r23e239: which city is the Eiffel tower in"), containsString("paris"));
+    }
+
+    @Test
+    public void jamesbonddrno() {
+        assertThat(queryProcessor.process("448r23e239: who played james bond in film dr no"), containsString("sean connery"));
+    }
+    @Test
     public void primes() {
         assertThat(queryProcessor.process("62049600: which of the following numbers are primes: 163, 383, 447, 67"), containsString("163,383,67"));
     }
