@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 
 public class QueryProcessor {
 
+
     public String process(String query) {
         final String q = query.toLowerCase();
 
@@ -25,9 +26,16 @@ public class QueryProcessor {
                 }
             }
             return Integer.toString(largest);
-        }
-        if (query.toLowerCase().contains("what is plus")) {
-            return "+";
+        } else if (query.contains("plus")) {
+            Pattern p = Pattern.compile("\\d+");
+            Matcher m = p.matcher(q);
+            int sum = 0;
+            while (m.find()) {
+                int i = Integer.parseInt(m.group());
+                sum += i;
+            }
+
+            return Integer.toString(sum);
         }
         return query.toLowerCase();
 
