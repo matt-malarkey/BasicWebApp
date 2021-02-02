@@ -11,7 +11,7 @@ public class QueryProcessor {
             return "horse-battery-66";
         }
         if (query.toLowerCase().contains("what is plus")) {
-            return "plus is opposite of minus";
+            return "+";
         }
         return query.toLowerCase();
 
